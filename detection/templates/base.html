@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Iris Tumor Detector{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'detection/css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Make specific text elements bright yellow with increased font size */
+        .bright-yellow {
+            color: #FFD700 !important; /* Bright yellow color */
+            font-size: 1.5rem; /* Increase the font size here */
+        }
+        /* Style for the main title */
+        .main-title {
+            font-size: 3rem; /* Make the title larger */
+            font-weight: bold; /* Make it bold */
+            color: #FFD700; /* Bright yellow color */
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-primary py-3 mb-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="animate__animated animate__fadeInLeft d-flex align-items-center">
+                    <!-- Eye Icon -->
+                    <i class="fas fa-eye fa-2x text-white mr-3"></i>
+                    
+                    <!-- Title and Subtitle -->
+                    <div>
+                        <h1 class="main-title mb-0">TumorDetective</h1>
+                        <p class="bright-yellow mb-0">Your Vision, Our Priority</p>
+                    </div>
+                </div>
+                
+            </div>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link bright-yellow" href="{% url 'upload_image' %}">Upload Image</a> <!-- Updated -->
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bright-yellow" href="{% url 'logout' %}">Logout</a> <!-- Updated -->
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link bright-yellow" href="{% url 'about' %}">About</a> <!-- Updated -->
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bright-yellow" href="{% url 'register' %}">Register</a> <!-- Updated -->
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bright-yellow" href="{% url 'login' %}">Login</a> <!-- Updated -->
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Messages Section -->
+    {% if messages %}
+        <div class="container my-4">
+            <div class="alert alert-primary" role="alert">
+                {% for message in messages %}
+                    {{ message }}<br>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <main class="container my-5">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer with LinkedIn Icon -->
+    <footer class="bg-primary text-white py-3 mt-5">
+        <div class="container d-flex justify-content-between align-items-center">
+            <p class="mb-0 animate__animated animate__fadeInLeft">&copy; 2024 Iris Tumor Detector</p>
+            <div class="animate__animated animate__fadeInRight">
+                <!-- Contact Us Text, LinkedIn Icon, and Gmail -->
+                <p class="mb-0 d-inline-block mr-3">Contact Us at:</p>
+                <!-- LinkedIn Icon -->
+                <a href="https://www.linkedin.com/in/tumordetective-d-a8647b337" class="text-white mr-3" target="_blank">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+                <br>
+                <!-- Gmail Link with "mailto:" Text -->
+                <span class="d-block mt-2">
+                    mailto: 
+                    <a href="Mailto:tumordetective22@gmail.com" class="text-white" target="_blank">
+                        tumordetective22@gmail.com
+                    </a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>

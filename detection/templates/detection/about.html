@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head section remains exactly the same until the custom CSS -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Iris Tumor Detector{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'detection/css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        .bright-yellow {
+            color: #FFD700 !important; 
+            font-size: 1.5rem; 
+        }
+        .main-title {
+            font-size: 3rem; 
+            font-weight: bold; 
+            color: #FFD700; 
+        }
+        .hero {
+            background-image: url("{% static 'detection/images/hero.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 4rem;
+        }
+        .feature {
+            padding: 60px 0;
+            text-align: center;
+        }
+        footer a {
+            color: white;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        /* New style for the info section */
+        .info-section {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-content {
+        padding-top: 70px; /* Added padding to push entire hero content down */
+    }
+    </style>
+</head>
+<body>
+    <!-- Header remains exactly the same -->
+    <header class="bg-primary py-3 mb-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="animate__animated animate__fadeInLeft d-flex align-items-center">
+                    <!-- Eye Icon -->
+                    <i class="fas fa-eye fa-2x text-white mr-3"></i>
+                    
+                    <!-- Title and Subtitle -->
+                    <div>
+                        <h1 class="main-title mb-0">TumorDetective</h1>
+                        <p class="bright-yellow mb-0">Your Vision, Our Priority</p>
+                    </div>
+                </div>
+                
+            </div>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link bright-yellow" href="{% url 'upload_image' %}">Upload Image</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bright-yellow" href="{% url 'logout' %}">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link bright-yellow" href="{% url 'about' %}">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bright-yellow" href="{% url 'register' %}">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link bright-yellow" href="{% url 'login' %}">Login</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section with new info section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- New info section -->
+            <div class="info-section">
+                <h3 class="text-center mb-3" style="font-weight: bold;">WHAT IS IRIS TUMOR, SYMPTOMS AND THE IMPORTANCE OF EARLY DETECTION</h3>
+                <p class="mb-4">An iris tumor is a growth or mass that develops in the colored part of the eye, known as the iris. While many iris tumors are benign (non-cancerous) and may pose little risk, some can be malignant, such as iris melanoma. Symptoms of an iris tumor can include changes in eye color, a visible spot on the iris, distorted or blurry vision, eye pain, or light sensitivity. Early signs may be subtle, like a small, slowly growing spot on the iris. Early detection is crucial, as identifying a malignant tumor early allows for more effective treatment, reducing the risk of the tumor spreading to other parts of the eye or body. Regular eye exams can play a vital role in early diagnosis and intervention.</p>
+            </div>
+            <h1>Welcome to TumorDetective</h1>
+            <p>Detect iris tumors with precision.</p>
+        </div>
+    </section>
+
+    <!-- Rest of the template remains exactly the same -->
+    <!-- Feature Highlights -->
+<section class="container my-5" style="margin-top: 50px;"> <!-- Added margin-top -->
+    <div class="row">
+        <div class="col-md-4 feature">
+            <h2 class="black" style="color: black;">Accurate Detection</h2> <!-- Changed color to black -->
+            <p style="color: black;">Utilize advanced algorithms to ensure accurate tumor detection.</p> <!-- Changed color to black -->
+        </div>
+        <div class="col-md-4 feature">
+            <h2 class="black" style="color: black;">User -Friendly Interface</h2> <!-- Changed color to black -->
+            <p style="color: black;">Our platform is designed for ease of use, ensuring a seamless experience.</p> <!-- Changed color to black -->
+        </div>
+        <div class="col-md-4 feature">
+            <h2 class="black" style="color: black;">Secure Data Handling</h2> <!-- Changed color to black -->
+            <p style="color: black;">Your data privacy is our priority. We follow stringent security measures.</p> <!-- Changed color to black -->
+        </div>
+    </div>
+</section>
+
+    <section class="bg-light py-5">
+        <div class="container text-center">
+            <h2 class="bright-yellow">What Our Users Say</h2>
+            <blockquote class="blockquote">
+                <p class="mb-0">"TumorDetective has changed my life! The detection process is quick and accurate."</p>
+                <footer class="blockquote-footer">Jane Doe</footer>
+            </blockquote>
+            <blockquote class="blockquote">
+                <p class="mb-0">"The user interface is so intuitive! I had no trouble using it."</p>
+                <footer class="blockquote-footer">John Smith</footer>
+            </blockquote>
+        </div>
+    </section>
+
+    {% if messages %}
+        <div class="container my-4">
+            <div class="alert alert-primary" role="alert">
+                {% for message in messages %}
+                    {{ message }}<br>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <main class="container my-5">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-primary text-white py-3 mt-5">
+        <div class="container d-flex justify-content-between align-items-center">
+            <p class="mb-0 animate__animated animate__fadeInLeft">&copy; 2024 Iris Tumor Detector</p>
+            <div class="animate__animated animate__fadeInRight">
+                <!-- Contact Us Text, LinkedIn Icon, and Gmail -->
+                <p class="mb-0 d-inline-block mr-3">Contact Us at:</p>
+                <!-- LinkedIn Icon -->
+                <a href="https://www.linkedin.com/in/tumordetective-d-a8647b337" class="text-white mr-3" target="_blank">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+                <br>
+                <!-- Gmail Link with "mailto:" Text -->
+                <span class="d-block mt-2">
+                    mailto: 
+                    <a href="Mailto:tumordetective22@gmail.com" class="text-white" target="_blank">
+                        tumordetective22@gmail.com
+                    </a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
