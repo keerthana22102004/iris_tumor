@@ -1,12 +1,10 @@
 services:
   - type: web
-    name: iris-tumor-app
+    name: iris-tumor-service
     env: python
+    pythonVersion: 3.10
     buildCommand: |
       pip install --upgrade pip
       pip install -r requirements.txt
       python manage.py collectstatic --noinput
     startCommand: gunicorn iris_tumor_detection.wsgi
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.11
